@@ -19,9 +19,6 @@ public class CandidateImage {
     private int id;
 
     @OneToOne(mappedBy = "candidateImage")
-    private CandidateResume candidateResume;
-
-    @OneToOne(mappedBy = "candidateImage")
     @JoinColumn(name = "candidate_id",referencedColumnName = "id")
     private Candidate candidate;
 

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +21,7 @@ public class Technology {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "technology")
+    private List<CandidateTechnology> candidateTechnologyList;
 }

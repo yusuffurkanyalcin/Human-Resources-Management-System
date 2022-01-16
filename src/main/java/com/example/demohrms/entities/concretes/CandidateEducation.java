@@ -37,6 +37,5 @@ public class CandidateEducation {
     @Column(name = "ending_date")
     private LocalDate endingDate;
 
-    @ManyToOne
-    private CandidateResume candidateResume;
+
 }
