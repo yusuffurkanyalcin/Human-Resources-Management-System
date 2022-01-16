@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 @Entity
@@ -38,6 +39,13 @@ public class Candidate extends User{
     @NotNull(message = ValidationMessages.PLEASE_FILL_IN_THE_BIRTH_YEAR)
     @Column(name = "birth_year")
     private int birthYear;
+
+
+    @OneToOne(mappedBy = "candidate")
+    private CandidateImage candidateImage;
+
+    @OneToMany(mappedBy = "candidate")
+    private List<CandidateEducation> candidateEducationList;
 /*
     @OneToMany(mappedBy = "candidate")
     private List<VerificationCodeCandidate> verificationCodeCandidates;
