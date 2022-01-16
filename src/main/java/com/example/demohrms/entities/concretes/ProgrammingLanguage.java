@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +21,7 @@ public class ProgrammingLanguage {
 
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "programmingLanguage")
+    private List<CandidateProgrammingLanguage> candidateProgrammingLanguageList;
 }

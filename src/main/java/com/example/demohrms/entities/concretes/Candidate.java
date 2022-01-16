@@ -52,10 +52,12 @@ public class Candidate extends User{
 
     @OneToMany(mappedBy = "candidate")
     private List<CandidateTechnology> candidateTechnologyList;
-/*
-    @OneToMany(mappedBy = "candidate")
-    private List<VerificationCodeCandidate> verificationCodeCandidates;
 
- */
+    @OneToMany(mappedBy = "candidate")
+    private List<CandidateProgrammingLanguage> candidateProgrammingLanguageList;
+
+    @OneToMany(mappedBy = "candidate")
+    private List<CandidateLanguage> candidateLanguageList;
+
 
 }
