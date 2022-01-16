@@ -13,4 +13,5 @@ public class CandidateResumeShowDto {
     private List<CandidateLanguage> candidateLanguageList;
     private List<CandidateTechnology> candidateTechnologyList;
     private CandidateImage candidateImage;
+    private CandidateWebsite candidateWebsite;
 }

@@ -10,8 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "candidate_images")
-public class CandidateImage {
+@Table(name = "candidate_websites")
+public class CandidateWebsite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +22,9 @@ public class CandidateImage {
     @JoinColumn(name = "candidate_id",referencedColumnName = "id")
     private Candidate candidate;
 
-    @Column(name = "url")
-    private String url;
+    @Column(name = "github_address")
+    private String githubAddress;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "image_id")
-    private String imageId;
+     @Column(name = "linkedin_address")
+    private String linkedinAddress;
 }

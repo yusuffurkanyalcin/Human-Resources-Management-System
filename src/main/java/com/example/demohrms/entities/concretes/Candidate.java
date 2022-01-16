@@ -44,6 +44,9 @@ public class Candidate extends User{
     @OneToOne(mappedBy = "candidate")
     private CandidateImage candidateImage;
 
+    @OneToOne(mappedBy = "candidate")
+    private CandidateWebsite candidateWebsite;
+
     @OneToMany(mappedBy = "candidate")
     private List<CandidateEducation> candidateEducationList;
 
