@@ -15,4 +15,6 @@ public interface EmployerService extends BaseRepository<Employer> {
 
     Result addEmployerWithVerifyCode(String mailCode , String databaseCode);
 
+    DataResult<Employer> getById(int employerId);
+
 }

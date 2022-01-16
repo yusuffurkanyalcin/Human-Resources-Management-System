@@ -60,8 +60,8 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public DataResult<Employer> getById(int id) {
-        Employer employer = this.employerDao.getById(id);
-        if( employer != null ){
+        Employer employer = this.employerDao.findById(id).get();
+        if( employer == null ){
             return new ErrorDataResult<>(null,Messages.NOT_EXISTS_ENTITY);
         }
         return new SuccessDataResult<>(employer);

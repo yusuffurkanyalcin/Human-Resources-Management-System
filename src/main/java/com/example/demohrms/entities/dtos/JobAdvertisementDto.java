@@ -10,14 +10,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobAdvertisementDto {
-
+    private int id;
     private int employerId;
     private int jobId;
     private int cityId;
     private int workTypeId;
     private int workTimeTypeId;
-    private float minSalary;
-    private float maxSalary;
+    private double minSalary;
+    private double maxSalary;
     private String positionDescription;
     private int openPosition;
     private LocalDate lastApplyDate;

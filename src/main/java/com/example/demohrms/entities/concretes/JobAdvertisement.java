@@ -1,11 +1,10 @@
 package com.example.demohrms.entities.concretes;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 
 @Data
 @Entity
@@ -23,23 +22,27 @@ public class JobAdvertisement {
     @JoinColumn(name = "employer_id",referencedColumnName = "id")
     private Employer employer;
 
-    @Column(name = "job_id")
-    private int jobId;
+    @ManyToOne
+    @JoinColumn(name = "job_id",referencedColumnName = "id")
+    private JobTitle jobTitle;
 
-    @Column(name = "city_id")
-    private int cityId;
+    @ManyToOne
+    @JoinColumn(name = "city_id",referencedColumnName = "id")
+    private City city;
 
-    @Column(name = "work_type_id")
-    private int workTypeId;
+    @ManyToOne
+    @JoinColumn(name = "work_type_id",referencedColumnName = "id")
+    private WorkType workType;
 
-    @Column(name = "work_time_type_id")
-    private int workTimeTypeId;
+    @ManyToOne
+    @JoinColumn(name = "work_time_type_id",referencedColumnName = "id")
+    private WorkTimeType workTimeType;
 
     @Column(name = "min_salary")
-    private float minSalary;
+    private double minSalary;
 
     @Column(name = "max_salary")
-    private float maxSalary;
+    private double maxSalary;
 
     @Column(name = "position_description")
     private String positionDescription;
@@ -49,5 +52,14 @@ public class JobAdvertisement {
 
     @Column(name = "last_apply_date")
     private LocalDate lastApplyDate;
+
+    @Column(name = "is_active")
+    private boolean status;
+
+    @Column(name = "created_date")
+    @Setter(value = AccessLevel.NONE)
+    private LocalDate createdDate;
+
+
 
 }

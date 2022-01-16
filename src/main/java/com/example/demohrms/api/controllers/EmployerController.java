@@ -4,6 +4,7 @@ import com.example.demohrms.business.abstracts.EmployerService;
 import com.example.demohrms.core.results.Result;
 import com.example.demohrms.entities.dtos.EmployerRegisterDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -27,5 +28,10 @@ public class EmployerController {
     @GetMapping("/getall")
     public Result getAll(){
         return this.employerService.getAll();
+    }
+
+    @GetMapping("/getbyid")
+    public Result getById(@Param("id") int id){
+        return this.employerService.getById(id);
     }
 }

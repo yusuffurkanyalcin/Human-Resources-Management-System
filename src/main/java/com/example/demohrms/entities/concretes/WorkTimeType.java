@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +21,7 @@ public class WorkTimeType {
 
     @Column(name = "time_type")
     private String timeType;
+
+    @OneToMany(mappedBy = "workTimeType")
+    private List<JobAdvertisement> jobAdvertisements;
 }
