@@ -14,4 +14,6 @@ public interface CandidateImageService {
      Map deleteFromCloudinary(String id) throws IOException;
      void deleteFromDatabase(int id);
      DataResult<CandidateImage> getByCandidateId(int candidateId);
+     DataResult<CandidateImage> getOne(int id);
+     boolean exists(int id);
 }

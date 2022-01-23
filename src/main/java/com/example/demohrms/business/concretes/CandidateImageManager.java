@@ -9,18 +9,21 @@ import com.example.demohrms.dataAccess.CandidateImageDao;
 import com.example.demohrms.entities.concretes.CandidateImage;
 import com.example.demohrms.externalServices.cloudinaryService.CloudinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Service
 public class CandidateImageManager implements CandidateImageService {
 
     private CandidateImageDao candidateImageDao;
     private CloudinaryService cloudinaryService;
 
     @Autowired
-    public CandidateImageManager(CandidateImageDao candidateImageDao,CloudinaryService cloudinaryService){
+    public CandidateImageManager(CandidateImageDao candidateImageDao,
+                                 CloudinaryService cloudinaryService){
         this.candidateImageDao=candidateImageDao;
         this.cloudinaryService=cloudinaryService;
     }
@@ -55,6 +58,16 @@ public class CandidateImageManager implements CandidateImageService {
     @Override
     public DataResult<CandidateImage> getByCandidateId(int candidateId) {
         return new SuccessDataResult<>(this.candidateImageDao.getByCandidateId(candidateId));
+    }
+
+    @Override
+    public DataResult<CandidateImage> getOne(int id) {
+        return new SuccessDataResult<>(this.candidateImageDao.findById(id).get());
+    }
+
+    @Override
+    public boolean exists(int id) {
+        return this.candidateImageDao.existsById(id);
     }
 
 
