@@ -1,4 +1,4 @@
-package mernisService;
+package com.example.demohrms.externalServices.mernisService;
 
 //----------------------------------------------------
 //

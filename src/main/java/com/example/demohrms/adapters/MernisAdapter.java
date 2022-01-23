@@ -1,7 +1,7 @@
 package com.example.demohrms.adapters;
 
 import com.example.demohrms.core.services.Mernis;
-import mernisService.TTSKPSPublicSoap;
+import com.example.demohrms.externalServices.mernisService.TTSKPSPublicSoap;
 
 public class MernisAdapter implements Mernis {
     @Override
