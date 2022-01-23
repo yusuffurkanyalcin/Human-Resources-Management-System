@@ -30,4 +30,11 @@ public class CandidateImage {
 
     @Column(name = "image_id")
     private String imageId;
+
+    public CandidateImage(int candidateId,String url ,String name , String imageId){
+        this.candidate.setId(candidateId);
+        this.name=name;
+        this.url=url;
+        this.imageId=imageId;
+    }
 }
