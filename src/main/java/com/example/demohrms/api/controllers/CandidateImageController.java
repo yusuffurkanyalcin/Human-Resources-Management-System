@@ -26,7 +26,7 @@ public class CandidateImageController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(@RequestParam MultipartFile multipartFile,int candidateId) throws IOException{
+    public ResponseEntity<?> upload(@RequestParam MultipartFile multipartFile, @RequestParam int candidateId) throws IOException{
         BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
         if(bi==null){
             return new ResponseEntity("Image no valid", HttpStatus.BAD_REQUEST);
@@ -36,7 +36,7 @@ public class CandidateImageController {
         return new ResponseEntity(result,HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public ResponseEntity<Map> delete(@PathVariable("id") int id) throws IOException {
         if (!candidateImageService.exists(id)) {
             return new ResponseEntity("No exists", HttpStatus.NOT_FOUND);
@@ -48,8 +48,8 @@ public class CandidateImageController {
     }
 
 
-    @GetMapping("/get")
-    public ResponseEntity<?> getById(@RequestParam int candidateImageId) {
-        return ResponseEntity.ok(this.candidateImageService.getByCandidateId(candidateImageId));
+    @GetMapping("/getbycandidateid")
+    public ResponseEntity<?> getById(@RequestParam int candidateId) {
+        return ResponseEntity.ok(this.candidateImageService.getByCandidateId(candidateId));
     }
 }

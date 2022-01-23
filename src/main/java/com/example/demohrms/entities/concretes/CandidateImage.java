@@ -18,9 +18,8 @@ public class CandidateImage {
     @Column(name = "id")
     private int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "candidate_id",referencedColumnName = "id")
-    private Candidate candidate;
+    @Column(name = "candidate_id")
+    private int candidateId;
 
     @Column(name = "url")
     private String url;
@@ -32,7 +31,7 @@ public class CandidateImage {
     private String imageId;
 
     public CandidateImage(int candidateId,String url ,String name , String imageId){
-        this.candidate.setId(candidateId);
+        this.candidateId=candidateId;
         this.name=name;
         this.url=url;
         this.imageId=imageId;
