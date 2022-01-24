@@ -1,6 +1,7 @@
 package com.example.demohrms.entities.concretes;
 
 import com.example.demohrms.entities.constants.ValidationMessages;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "candidates")
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidateEducationList","candidateWorkExperienceList","candidateTechnologyList",
+"candidateProgrammingLanguageList","candidateLanguageList"})
+
 public class Candidate extends User{
 
     @NotBlank(message = ValidationMessages.PLEASE_FILL_IN_THE_FIRST_NAME)

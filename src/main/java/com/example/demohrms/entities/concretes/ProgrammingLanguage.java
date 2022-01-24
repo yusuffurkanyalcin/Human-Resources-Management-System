@@ -1,5 +1,6 @@
 package com.example.demohrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "programming_languages")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidateProgrammingLanguageList"})
+
 public class ProgrammingLanguage {
 
     @Id
