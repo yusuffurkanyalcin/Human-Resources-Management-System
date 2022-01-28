@@ -4,7 +4,6 @@ import com.example.demohrms.business.abstracts.EmployerService;
 import com.example.demohrms.business.abstracts.VerificationCodeEmployerService;
 import com.example.demohrms.business.constants.Messages;
 import com.example.demohrms.core.business.RunRules;
-import com.example.demohrms.core.business.SingleModelMapper;
 import com.example.demohrms.core.business.ValidateDto;
 import com.example.demohrms.core.results.*;
 import com.example.demohrms.dataAccess.EmployerDao;

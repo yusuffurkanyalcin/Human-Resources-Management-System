@@ -4,7 +4,6 @@ import com.example.demohrms.business.abstracts.CandidateService;
 import com.example.demohrms.business.abstracts.VerificationCodeCandidateService;
 import com.example.demohrms.business.constants.Messages;
 import com.example.demohrms.core.business.RunRules;
-import com.example.demohrms.core.business.SingleModelMapper;
 import com.example.demohrms.core.business.ValidateDto;
 import com.example.demohrms.core.results.*;
 import com.example.demohrms.dataAccess.CandidateDao;
@@ -13,15 +12,8 @@ import com.example.demohrms.entities.dtos.CandidateRegisterDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CandidateManager implements CandidateService {

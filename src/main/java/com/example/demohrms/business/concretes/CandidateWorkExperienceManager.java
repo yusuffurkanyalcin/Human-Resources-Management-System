@@ -4,17 +4,16 @@ package com.example.demohrms.business.concretes;
 import com.example.demohrms.business.abstracts.CandidateWorkExperienceService;
 import com.example.demohrms.business.constants.Messages;
 import com.example.demohrms.core.business.RunRules;
-import com.example.demohrms.core.business.SingleModelMapper;
 import com.example.demohrms.core.results.*;
 import com.example.demohrms.dataAccess.CandidateWorkExperienceDao;
 import com.example.demohrms.entities.concretes.CandidateWorkExperience;
 import com.example.demohrms.entities.dtos.CandidateWorkExperienceDto;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CandidateWorkExperienceManager implements CandidateWorkExperienceService {
@@ -27,29 +26,29 @@ public class CandidateWorkExperienceManager implements CandidateWorkExperienceSe
             ModelMapper modelMapper
     ){
         this.candidateWorkExperienceDao=candidateWorkExperienceDao;
+        this.modelMapper=modelMapper;
     }
 
     @Override
     public DataResult<CandidateWorkExperienceDto> getById(int id) {
-        Result result = RunRules.run(isCandidateWorkExperienceExists(id));
-        if(result != null){
-            return new ErrorDataResult<>(null, result.getMessage());
-        }
-        CandidateWorkExperience candidateWorkExperience = this.candidateWorkExperienceDao.getById(id);
-        CandidateWorkExperienceDto dto= SingleModelMapper.getInstance().map(candidateWorkExperience,CandidateWorkExperienceDto.class);
+        CandidateWorkExperience candidateWorkExperience = candidateWorkExperienceDao.getById(id);
+       CandidateWorkExperienceDto dto = modelMapper.map(candidateWorkExperience,CandidateWorkExperienceDto.class);
         return new SuccessDataResult<>(dto);
     }
 
     @Override
-    public DataResult<CandidateWorkExperienceDto> getAllByCandidateId(int candidateId) {
-        return null;
+    public DataResult<List<CandidateWorkExperienceDto>> getAllByCandidateId(int candidateId) {
+
+        return (isCandidateWorkExperienceExists(candidateId).isSuccess())
+                ?converToDtoList(candidateWorkExperienceDao.getAllByCandidateId(candidateId))
+                :new ErrorDataResult<>(null);
     }
+
 
     @Override
     public DataResult<List<CandidateWorkExperienceDto>> getAll() {
 
-        List<CandidateWorkExperienceDto> dto = modelMapper.map(candidateWorkExperienceDao.findAll(),new TypeToken<List<CandidateWorkExperienceDto>>(){}.getType());
-        return new SuccessDataResult<>(dto);
+        return converToDtoList(candidateWorkExperienceDao.findAll());
     }
 
     private Result isCandidateWorkExperienceExists(int id){
@@ -58,6 +57,19 @@ public class CandidateWorkExperienceManager implements CandidateWorkExperienceSe
             return new ErrorResult(Messages.NOT_EXISTS_ENTITY);
         }
         return new SuccessResult();
+    }
+
+    private DataResult<List<CandidateWorkExperienceDto>> converToDtoList(List<CandidateWorkExperience> list){
+        List<CandidateWorkExperienceDto> dto;
+        try {
+            list = candidateWorkExperienceDao.findAll();
+            dto = list.stream().map(
+                    item -> modelMapper.map(item,CandidateWorkExperienceDto.class)
+            ).collect(Collectors.toList());
+        }catch (Exception e){
+            return new ErrorDataResult<>(null,e.getMessage());
+        }
+        return new SuccessDataResult<>(dto);
     }
 }
 

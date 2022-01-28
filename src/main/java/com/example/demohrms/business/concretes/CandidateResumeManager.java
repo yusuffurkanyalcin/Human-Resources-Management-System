@@ -1,7 +1,6 @@
 package com.example.demohrms.business.concretes;
 
 import com.example.demohrms.business.abstracts.CandidateResumeService;
-import com.example.demohrms.core.business.SingleModelMapper;
 import com.example.demohrms.core.results.DataResult;
 import com.example.demohrms.core.results.SuccessDataResult;
 import com.example.demohrms.dataAccess.CandidateDao;
