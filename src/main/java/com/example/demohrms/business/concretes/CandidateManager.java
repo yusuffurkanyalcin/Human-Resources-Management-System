@@ -13,6 +13,7 @@ import com.example.demohrms.entities.dtos.CandidateRegisterDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.validation.ConstraintViolation;
@@ -27,13 +28,16 @@ public class CandidateManager implements CandidateService {
 
     private final CandidateDao candidateDao;
     private final VerificationCodeCandidateService verificationCodeCandidateService;
+    private ModelMapper modelMapper;
 
 
     @Autowired
     public CandidateManager(CandidateDao candidateDao,
-                            VerificationCodeCandidateService verificationCodeCandidateService){
+                            VerificationCodeCandidateService verificationCodeCandidateService,
+                            ModelMapper modelMapper){
         this.candidateDao=candidateDao;
         this.verificationCodeCandidateService=verificationCodeCandidateService;
+        this.modelMapper=modelMapper;
     }
 
     @Override
@@ -51,7 +55,7 @@ public class CandidateManager implements CandidateService {
         }
 
 
-        Candidate newCandidate = SingleModelMapper.getInstance().map(candidateRegisterDto,Candidate.class);
+        Candidate newCandidate = modelMapper.map(candidateRegisterDto,Candidate.class);
         candidateDao.save(newCandidate);
         verificationCodeCandidateService.sendCode(candidateRegisterDto.getEmail(),newCandidate.getId());
         return new SuccessResult("Oldu");

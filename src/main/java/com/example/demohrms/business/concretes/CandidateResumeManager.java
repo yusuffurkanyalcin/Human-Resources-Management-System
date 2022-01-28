@@ -8,6 +8,7 @@ import com.example.demohrms.dataAccess.CandidateDao;
 import com.example.demohrms.dataAccess.CandidateEducationDao;
 import com.example.demohrms.entities.dtos.CandidateResumeShowDto;
 import com.example.demohrms.entities.dtos.CandidateShowDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +16,17 @@ import org.springframework.stereotype.Service;
 public class CandidateResumeManager implements CandidateResumeService {
     private CandidateDao candidateDao;
     private CandidateEducationDao candidateEducationDao;
+    private ModelMapper modelMapper;
 
     @Autowired
     public CandidateResumeManager(
             CandidateDao candidateDao,
-            CandidateEducationDao candidateEducationDao
+            CandidateEducationDao candidateEducationDao,
+            ModelMapper modelMapper
     ){
         this.candidateDao=candidateDao;
         this.candidateEducationDao=candidateEducationDao;
+        this.modelMapper=modelMapper;
     }
 
     @Override
@@ -30,7 +34,7 @@ public class CandidateResumeManager implements CandidateResumeService {
 
         CandidateResumeShowDto candidateResume = new CandidateResumeShowDto();
 
-        CandidateShowDto candidateShowDto = SingleModelMapper.getInstance().map(this.candidateDao.findById(candidateId).get(),CandidateShowDto.class);
+        CandidateShowDto candidateShowDto = modelMapper.map(this.candidateDao.findById(candidateId).get(),CandidateShowDto.class);
         candidateResume.setCandidateShowDto(candidateShowDto);
 
         candidateResume.setCandidateEducations(this.candidateEducationDao.findAllByCandidateId(candidateId));

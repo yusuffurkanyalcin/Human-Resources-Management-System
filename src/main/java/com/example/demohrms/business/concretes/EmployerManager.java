@@ -10,6 +10,7 @@ import com.example.demohrms.core.results.*;
 import com.example.demohrms.dataAccess.EmployerDao;
 import com.example.demohrms.entities.concretes.Employer;
 import com.example.demohrms.entities.dtos.EmployerRegisterDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,14 +21,16 @@ public class EmployerManager implements EmployerService {
 
     private final EmployerDao employerDao;
     private final VerificationCodeEmployerService verificationCodeEmployerService;
-
+    private ModelMapper modelMapper;
     @Autowired
     public EmployerManager(
             EmployerDao employerDao,
-            VerificationCodeEmployerService verificationCodeEmployerService
+            VerificationCodeEmployerService verificationCodeEmployerService,
+            ModelMapper modelMapper
     ){
         this.employerDao=employerDao;
         this.verificationCodeEmployerService=verificationCodeEmployerService;
+        this.modelMapper=modelMapper;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class EmployerManager implements EmployerService {
             return result;
         }
 
-        Employer employer = SingleModelMapper.getInstance().map(employerRegisterDto,Employer.class);
+        Employer employer = modelMapper.map(employerRegisterDto,Employer.class);
         this.employerDao.save(employer);
         this.verificationCodeEmployerService.sendCode(employer.getEmail(),employer.getId());
         return new Result("oldu",true);
