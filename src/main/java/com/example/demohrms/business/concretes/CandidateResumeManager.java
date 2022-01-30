@@ -1,5 +1,6 @@
 package com.example.demohrms.business.concretes;
 
+import com.example.demohrms.business.abstracts.CandidateLanguageService;
 import com.example.demohrms.business.abstracts.CandidateProgrammingLanguageService;
 import com.example.demohrms.business.abstracts.CandidateResumeService;
 import com.example.demohrms.core.results.DataResult;
@@ -18,18 +19,21 @@ public class CandidateResumeManager implements CandidateResumeService {
     private CandidateEducationDao candidateEducationDao;
     private ModelMapper modelMapper;
     private CandidateProgrammingLanguageService candidateProgrammingLanguageService;
+    private CandidateLanguageService candidateLanguageService;
 
     @Autowired
     public CandidateResumeManager(
             CandidateDao candidateDao,
             CandidateEducationDao candidateEducationDao,
             ModelMapper modelMapper,
-            CandidateProgrammingLanguageService candidateProgrammingLanguageService
+            CandidateProgrammingLanguageService candidateProgrammingLanguageService,
+            CandidateLanguageService candidateLanguageService
     ){
         this.candidateDao=candidateDao;
         this.candidateEducationDao=candidateEducationDao;
         this.modelMapper=modelMapper;
         this.candidateProgrammingLanguageService=candidateProgrammingLanguageService;
+        this.candidateLanguageService=candidateLanguageService;
     }
 
     @Override
@@ -38,11 +42,13 @@ public class CandidateResumeManager implements CandidateResumeService {
         CandidateResumeShowDto candidateResume = new CandidateResumeShowDto();
 
         CandidateShowDto candidateShowDto = modelMapper.map(this.candidateDao.findById(candidateId).get(),CandidateShowDto.class);
-        candidateResume.setCandidateShowDto(candidateShowDto);
+        candidateResume.setCandidate(candidateShowDto);
 
-        candidateResume.setCandidateEducations(this.candidateEducationDao.findAllByCandidateId(candidateId));
+        candidateResume.setEducations(this.candidateEducationDao.findAllByCandidateId(candidateId));
 
-        candidateResume.setCandidateProgrammingLanguageList(candidateProgrammingLanguageService.getAllByCandidateId(candidateId).getData());
+        candidateResume.setProgrammingLanguages(candidateProgrammingLanguageService.getAllByCandidateId(candidateId).getData());
+
+        candidateResume.setLanguages(candidateLanguageService.getAllByCandidateId(candidateId).getData());
         return new SuccessDataResult<>(candidateResume);
     }
 }

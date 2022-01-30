@@ -12,16 +12,17 @@ import java.util.List;
 @AllArgsConstructor
 public class CandidateResumeShowDto{
 
-    private CandidateShowDto candidateShowDto;
-    private List<CandidateEducation> candidateEducations;
+    private CandidateShowDto candidate;
 
-    private List<CandidateWorkExperience> candidateWorkExperienceList;
+    private List<CandidateEducationDto> educations;
 
-   private List<CandidateProgrammingLanguageDto> candidateProgrammingLanguageList;
+    private List<CandidateWorkExperience> workExperiences;
 
-   /* private List<CandidateLanguage> candidateLanguageList;
+   private List<CandidateProgrammingLanguageDto> programmingLanguages;
 
-    private List<CandidateTechnology> candidateTechnologyList;
+    private List<CandidateLanguageDto> languages;
+
+    /* private List<CandidateTechnology> candidateTechnologyList;
 
     private CandidateImage candidateImage;
 

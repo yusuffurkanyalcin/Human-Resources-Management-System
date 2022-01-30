@@ -21,8 +21,8 @@ public class CandidateResumeController {
         this.candidateResumeService=candidateResumeService;
     }
 
-    @GetMapping("/getbycandidateid/{candidateId}")
-    public Result getByCandidateId(@PathVariable(name = "candidateId") int candidateId){
+    @GetMapping("/{candidateId}")
+    public Result getByCandidateId(@PathVariable("candidateId") int candidateId){
         return this.candidateResumeService.getResumeByCandidateId(candidateId);
     }
 }

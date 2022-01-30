@@ -5,6 +5,7 @@ import com.example.demohrms.core.results.DataResult;
 import com.example.demohrms.core.results.SuccessDataResult;
 import com.example.demohrms.dataAccess.CandidateEducationDao;
 import com.example.demohrms.entities.concretes.CandidateEducation;
+import com.example.demohrms.entities.dtos.CandidateEducationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class CandidateEducationManager implements CandidateEducationService {
     }
 
     @Override
-    public DataResult<List<CandidateEducation>> getAllByCandidateId(int candidateId) {
+    public DataResult<List<CandidateEducationDto>> getAllByCandidateId(int candidateId) {
 
         return new SuccessDataResult<>(this.candidateEducationDao.findAllByCandidateId(candidateId));
     }

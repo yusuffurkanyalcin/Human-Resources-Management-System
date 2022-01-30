@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface CandidateProgrammingLanguageDao extends JpaRepository<CandidateProgrammingLanguage,Integer> {
 
-    @Query(Queries.GET_ALL_CANDIDATE_PROGRAMMING_LANGUAGES_BY_CANDIDATE_ID)
+    @Query(Queries.GET_ALL_BY_CANDIDATE_ID)
     List<CandidateProgrammingLanguageDto> getCandidateProgrammingLanguagesByCandidateId(int candidateId);
 }
