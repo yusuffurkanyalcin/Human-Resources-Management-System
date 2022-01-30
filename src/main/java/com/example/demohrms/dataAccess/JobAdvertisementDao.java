@@ -1,5 +1,5 @@
 package com.example.demohrms.dataAccess;
-import com.example.demohrms.dataAccess.constants.Queries;
+import com.example.demohrms.dataAccess.constants.JobAdvertisement.Queries;
 import com.example.demohrms.entities.concretes.JobAdvertisement;
 import com.example.demohrms.entities.dtos.JobAdvertisementShowDto;
 import org.springframework.data.jpa.repository.JpaRepository;

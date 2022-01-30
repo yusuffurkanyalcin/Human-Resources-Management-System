@@ -1,4 +1,4 @@
-package com.example.demohrms.dataAccess.constants;
+package com.example.demohrms.dataAccess.constants.JobAdvertisement;
 
 public class Queries {
     public final static String IN_ACTIVE_JOB_ADVERTISEMENTS = "SELECT " +

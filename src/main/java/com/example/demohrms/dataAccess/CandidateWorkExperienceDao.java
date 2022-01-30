@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CandidateWorkExperienceDao extends JpaRepository<CandidateWorkExperience,Integer> {
 
-    @Query("FROM CandidateWorkExperience WHERE candidate.id =: candidateId")
+    @Query("FROM CandidateWorkExperience WHERE candidate.id = :candidateId")
     List<CandidateWorkExperience> getAllByCandidateId(int candidateId);
 }

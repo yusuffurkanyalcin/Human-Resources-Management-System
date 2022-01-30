@@ -17,9 +17,9 @@ public class CandidateResumeShowDto{
 
     private List<CandidateWorkExperience> candidateWorkExperienceList;
 
-   /* private List<CandidateProgrammingLanguage> candidateProgrammingLanguageList;
+   private List<CandidateProgrammingLanguageDto> candidateProgrammingLanguageList;
 
-    private List<CandidateLanguage> candidateLanguageList;
+   /* private List<CandidateLanguage> candidateLanguageList;
 
     private List<CandidateTechnology> candidateTechnologyList;
 

@@ -1,5 +1,6 @@
 package com.example.demohrms.business.concretes;
 
+import com.example.demohrms.business.abstracts.CandidateProgrammingLanguageService;
 import com.example.demohrms.business.abstracts.CandidateResumeService;
 import com.example.demohrms.core.results.DataResult;
 import com.example.demohrms.core.results.SuccessDataResult;
@@ -16,16 +17,19 @@ public class CandidateResumeManager implements CandidateResumeService {
     private CandidateDao candidateDao;
     private CandidateEducationDao candidateEducationDao;
     private ModelMapper modelMapper;
+    private CandidateProgrammingLanguageService candidateProgrammingLanguageService;
 
     @Autowired
     public CandidateResumeManager(
             CandidateDao candidateDao,
             CandidateEducationDao candidateEducationDao,
-            ModelMapper modelMapper
+            ModelMapper modelMapper,
+            CandidateProgrammingLanguageService candidateProgrammingLanguageService
     ){
         this.candidateDao=candidateDao;
         this.candidateEducationDao=candidateEducationDao;
         this.modelMapper=modelMapper;
+        this.candidateProgrammingLanguageService=candidateProgrammingLanguageService;
     }
 
     @Override
@@ -37,6 +41,8 @@ public class CandidateResumeManager implements CandidateResumeService {
         candidateResume.setCandidateShowDto(candidateShowDto);
 
         candidateResume.setCandidateEducations(this.candidateEducationDao.findAllByCandidateId(candidateId));
+
+        candidateResume.setCandidateProgrammingLanguageList(candidateProgrammingLanguageService.getAllByCandidateId(candidateId).getData());
         return new SuccessDataResult<>(candidateResume);
     }
 }
