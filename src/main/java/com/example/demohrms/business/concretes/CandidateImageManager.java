@@ -7,12 +7,14 @@ import com.example.demohrms.core.results.SuccessDataResult;
 import com.example.demohrms.core.results.SuccessResult;
 import com.example.demohrms.dataAccess.CandidateImageDao;
 import com.example.demohrms.entities.concretes.CandidateImage;
+import com.example.demohrms.entities.dtos.CandidateImageDto;
 import com.example.demohrms.externalServices.cloudinaryService.CloudinaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -63,6 +65,11 @@ public class CandidateImageManager implements CandidateImageService {
     @Override
     public DataResult<CandidateImage> getOne(int id) {
         return new SuccessDataResult<>(this.candidateImageDao.findById(id).get());
+    }
+
+    @Override
+    public DataResult<CandidateImageDto> getDtoByCandidateId(int candidateId) {
+        return new SuccessDataResult<>(candidateImageDao.getDtoByCandidateId(candidateId));
     }
 
     @Override

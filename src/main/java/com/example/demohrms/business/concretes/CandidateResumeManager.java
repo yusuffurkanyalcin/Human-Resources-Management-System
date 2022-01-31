@@ -1,8 +1,6 @@
 package com.example.demohrms.business.concretes;
 
-import com.example.demohrms.business.abstracts.CandidateLanguageService;
-import com.example.demohrms.business.abstracts.CandidateProgrammingLanguageService;
-import com.example.demohrms.business.abstracts.CandidateResumeService;
+import com.example.demohrms.business.abstracts.*;
 import com.example.demohrms.core.results.DataResult;
 import com.example.demohrms.core.results.SuccessDataResult;
 import com.example.demohrms.dataAccess.CandidateDao;
@@ -20,6 +18,10 @@ public class CandidateResumeManager implements CandidateResumeService {
     private ModelMapper modelMapper;
     private CandidateProgrammingLanguageService candidateProgrammingLanguageService;
     private CandidateLanguageService candidateLanguageService;
+    private CandidateTechnologyService candidateTechnologyService;
+    private CandidateImageService candidateImageService;
+    private CandidateWebsiteService candidateWebsiteService;
+    private CandidateWorkExperienceService candidateWorkExperienceService;
 
     @Autowired
     public CandidateResumeManager(
@@ -27,13 +29,21 @@ public class CandidateResumeManager implements CandidateResumeService {
             CandidateEducationDao candidateEducationDao,
             ModelMapper modelMapper,
             CandidateProgrammingLanguageService candidateProgrammingLanguageService,
-            CandidateLanguageService candidateLanguageService
+            CandidateLanguageService candidateLanguageService,
+            CandidateTechnologyService candidateTechnologyService,
+            CandidateImageService candidateImageService,
+            CandidateWebsiteService candidateWebsiteService,
+            CandidateWorkExperienceService candidateWorkExperienceService
     ){
         this.candidateDao=candidateDao;
         this.candidateEducationDao=candidateEducationDao;
         this.modelMapper=modelMapper;
         this.candidateProgrammingLanguageService=candidateProgrammingLanguageService;
         this.candidateLanguageService=candidateLanguageService;
+        this.candidateTechnologyService=candidateTechnologyService;
+        this.candidateImageService=candidateImageService;
+        this.candidateWebsiteService=candidateWebsiteService;
+        this.candidateWorkExperienceService=candidateWorkExperienceService;
     }
 
     @Override
@@ -46,9 +56,17 @@ public class CandidateResumeManager implements CandidateResumeService {
 
         candidateResume.setEducations(this.candidateEducationDao.findAllByCandidateId(candidateId));
 
+        candidateResume.setWorkExperiences(candidateWorkExperienceService.getAllDtosByCandidateId(candidateId).getData());
+
         candidateResume.setProgrammingLanguages(candidateProgrammingLanguageService.getAllByCandidateId(candidateId).getData());
 
         candidateResume.setLanguages(candidateLanguageService.getAllByCandidateId(candidateId).getData());
+
+        candidateResume.setTechnologies(candidateTechnologyService.getAllByCandidateId(candidateId).getData());
+
+        candidateResume.setImage(candidateImageService.getDtoByCandidateId(candidateId).getData());
+
+        candidateResume.setWebSites(candidateWebsiteService.getDtoByCandidateId(candidateId).getData());
         return new SuccessDataResult<>(candidateResume);
     }
 }

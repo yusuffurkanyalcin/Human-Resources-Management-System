@@ -37,10 +37,10 @@ public class CandidateWorkExperienceManager implements CandidateWorkExperienceSe
     }
 
     @Override
-    public DataResult<List<CandidateWorkExperienceDto>> getAllByCandidateId(int candidateId) {
+    public DataResult<List<CandidateWorkExperienceDto>> getAllDtosByCandidateId(int candidateId) {
 
         return (isCandidateWorkExperienceExists(candidateId).isSuccess())
-                ?converToDtoList(candidateWorkExperienceDao.getAllByCandidateId(candidateId))
+                ?new SuccessDataResult<>(candidateWorkExperienceDao.getAllDtosByCandidateId(candidateId))
                 :new ErrorDataResult<>(null);
     }
 

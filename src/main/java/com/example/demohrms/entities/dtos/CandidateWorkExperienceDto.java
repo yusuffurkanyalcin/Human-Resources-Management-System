@@ -11,10 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CandidateWorkExperienceDto {
 
-    private int id;
-
-    private String candidateFirstName;
-    private String candidateLastName;
 
     private String workPlace;
     private String position;

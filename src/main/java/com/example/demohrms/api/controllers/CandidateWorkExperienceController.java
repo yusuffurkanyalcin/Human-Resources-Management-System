@@ -25,7 +25,7 @@ public class CandidateWorkExperienceController {
 
     @GetMapping("/getallbycandidateid/{candidateId}")
     public Result getById(@PathVariable("candidateId") int candidateId){
-        return this.candidateWorkExperienceService.getAllByCandidateId(candidateId);
+        return this.candidateWorkExperienceService.getAllDtosByCandidateId(candidateId);
     }
 
     @GetMapping("/getall")

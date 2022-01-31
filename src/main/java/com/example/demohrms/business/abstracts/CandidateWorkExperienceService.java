@@ -9,6 +9,6 @@ import java.util.List;
 public interface CandidateWorkExperienceService {
 
     DataResult<CandidateWorkExperienceDto> getById(int id);
-    DataResult<List<CandidateWorkExperienceDto>> getAllByCandidateId( int candidateId);
+    DataResult<List<CandidateWorkExperienceDto>> getAllDtosByCandidateId( int candidateId);
     DataResult<List<CandidateWorkExperienceDto>> getAll();
 }

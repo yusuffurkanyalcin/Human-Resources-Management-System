@@ -16,17 +16,16 @@ public class CandidateResumeShowDto{
 
     private List<CandidateEducationDto> educations;
 
-    private List<CandidateWorkExperience> workExperiences;
+    private List<CandidateWorkExperienceDto> workExperiences;
 
-   private List<CandidateProgrammingLanguageDto> programmingLanguages;
+    private List<CandidateProgrammingLanguageDto> programmingLanguages;
 
     private List<CandidateLanguageDto> languages;
 
-    /* private List<CandidateTechnology> candidateTechnologyList;
+    private List<CandidateTechnologyDto> technologies;
 
-    private CandidateImage candidateImage;
+    private CandidateImageDto image;
 
-    private CandidateWebsite candidateWebsite;
+    private CandidateWebsiteDto webSites;
 
-     */
 }
