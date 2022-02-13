@@ -8,6 +8,8 @@ It combines a set of systems and processes to enable easy management of human re
 - Candidate can register in the system with verify national status verification and email verification.
 - Candidate can add resume to the system.
 - Employer can add job advertisement(s) to the system.
+- When any user wants register in the system , It first sends a verification code to the user's e-mail address before the user adds in the database.
+- If the user has not verified the e-mail , the user is inactive
 
 # Available API Codes
 
