@@ -13,15 +13,18 @@ It combines a set of systems and processes to enable easy management of human re
 
 - **Main url : `localhost:8080`**\
 **1.** Download and run project.\
-**2.** Open this url in your browser `localhost:8080/swagger-ui.html` while the application is running\
-**3.** You can see all API requests now.
+**2.** You can see all API requests now.
 
-### `/auth/register-candidate`
+### `/candidate/add`
 - This API provides us to **register new candidates**
-- POST Operation
-
-### `/auth/register-employer`
-- This API provides us to **register new employers**
+- Format : JSON
+  ```
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
 - POST Operation
 
 ### `/candidates/getall`
