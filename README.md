@@ -1,4 +1,4 @@
-## Postgresql database resource [click here !](https://github.com/yusuffurkanyalcin/Human-Resources-Management-System/blob/master/mydb.sql)
+## Postgresql database resource [click here !](https://github.com/yusuffurkanyalcin/Human-Resources-Management-System/blob/master/demohrms.sql)
 
 # HRMS (Human Resource Management System)
 HRMS is a type of human resource management software.\
