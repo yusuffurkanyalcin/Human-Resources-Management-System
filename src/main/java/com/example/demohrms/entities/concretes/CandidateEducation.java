@@ -1,5 +1,6 @@
 package com.example.demohrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +24,17 @@ public class CandidateEducation {
 
     @ManyToOne
     @JoinColumn(name = "school_id",referencedColumnName = "id")
+    @JsonIgnore
     private School school;
 
     @ManyToOne
     @JoinColumn(name = "department_id",referencedColumnName = "id")
+    @JsonIgnore
     private Department department;
 
     @ManyToOne
     @JoinColumn(name = "candidate_id",referencedColumnName = "id")
+    @JsonIgnore
     private Candidate candidate;
 
     @Column(name = "beginning_date")

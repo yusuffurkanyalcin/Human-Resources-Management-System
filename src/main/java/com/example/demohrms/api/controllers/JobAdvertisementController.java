@@ -5,6 +5,7 @@ import com.example.demohrms.core.results.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/job-advertisement")
 public class JobAdvertisementController {

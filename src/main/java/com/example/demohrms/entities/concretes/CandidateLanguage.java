@@ -1,5 +1,6 @@
 package com.example.demohrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,10 +21,12 @@ public class CandidateLanguage {
 
     @ManyToOne
     @JoinColumn(name = "candidate_id",referencedColumnName = "id")
+    @JsonIgnore
     private Candidate candidate;
 
     @ManyToOne
     @JoinColumn(name = "language_id",referencedColumnName = "id")
+    @JsonIgnore
     private Language language;
 
     @Column(name = "level")

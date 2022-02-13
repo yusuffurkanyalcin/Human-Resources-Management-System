@@ -1,6 +1,7 @@
 package com.example.demohrms.entities.concretes;
 
 import com.example.demohrms.entities.constants.ValidationMessages;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,9 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "candidates")
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","candidateEducationList","candidateWorkExperienceList","candidateTechnologyList",
-"candidateProgrammingLanguageList","candidateLanguageList"})
-
 public class Candidate extends User{
 
     @NotBlank(message = ValidationMessages.PLEASE_FILL_IN_THE_FIRST_NAME)
@@ -44,22 +42,27 @@ public class Candidate extends User{
     @Column(name = "birth_year")
     private int birthYear;
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "candidate")
     private CandidateWebsite candidateWebsite;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private List<CandidateEducation> candidateEducationList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private List<CandidateWorkExperience> candidateWorkExperienceList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private List<CandidateTechnology> candidateTechnologyList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private List<CandidateProgrammingLanguage> candidateProgrammingLanguageList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private List<CandidateLanguage> candidateLanguageList;
 
