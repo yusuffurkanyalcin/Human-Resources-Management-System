@@ -17,15 +17,15 @@ It combines a set of systems and processes to enable easy management of human re
 
 ### `/candidate/add`
 - This API provides us to **register new candidates**
-- Format : JSON
-  ```
+- POST Operation
+- Format : 
+ ```
 {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
 }
 ```
-- POST Operation
 
 ### `/candidates/getall`
 - This API provides us to **get all candidates**
